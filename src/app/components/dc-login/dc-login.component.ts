@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
+import { DiscourseDataService } from 'src/app/services/discourse-data.service';
+import { EncryptionService } from 'src/app/services/util/encryption.service';
 
 @Component({
   selector: 'app-dc-login',
@@ -8,15 +9,19 @@ import { User } from 'src/app/models/user';
 })
 export class DcLoginComponent implements OnInit {
 
-  user: User = new User();
-
-  constructor() { }
+  constructor(
+    public dataService: DiscourseDataService,
+    public encryptionService: EncryptionService
+  ) { }
 
   ngOnInit() {
   }
 
   loginUser() {
-    console.log(this.user);
+    this.dataService.user.password = this.encryptionService.encrypt('123456$#@$^@1ERF', this.dataService.user.password);
+    console.log(this.dataService.user);
+    this.dataService.user.password = this.encryptionService.decrypt('123456$#@$^@1ERF', this.dataService.user.password);
+    console.log(this.dataService.user);
   }
 
 }
