@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscourseDataService } from 'src/app/services/discourse-data.service';
+import { DiscourseDataService } from 'src/app/services/data/discourse-data.service';
 import { EncryptionService } from 'src/app/services/util/encryption.service';
 
 @Component({

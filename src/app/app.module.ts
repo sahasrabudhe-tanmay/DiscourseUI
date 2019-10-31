@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DcLoginComponent } from './components/dc-login/dc-login.component';
 import { EncryptionService } from './services/util/encryption.service';
-import { DiscourseDataService } from './services/discourse-data.service';
+import { DiscourseDataService } from './services/data/discourse-data.service';
 
 @NgModule({
   declarations: [
