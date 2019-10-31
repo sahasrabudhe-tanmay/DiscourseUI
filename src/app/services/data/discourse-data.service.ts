@@ -7,6 +7,7 @@ import { User } from '../../models/user';
 export class DiscourseDataService {
 
   user: User = new User();
+  DISCOURSE_RS_URL = "http://localhost:8080/discourse-rs/";
 
   constructor() { }
 }
