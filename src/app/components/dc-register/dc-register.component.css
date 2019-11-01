@@ -2,7 +2,7 @@
     background-color: #ffffff;
 }
 
-.login-box {
+.register-box {
     width: 20%;
     position: absolute;
     top: 50%;
@@ -12,7 +12,7 @@
     padding: 5px;
 }
 
-.login-header {
+.register-header {
     margin: 20px 5px;
     text-align: center;
 }
@@ -21,7 +21,7 @@
     width: 100%;
 }
 
-.textbox input[type=text],input[type=password] {
+.textbox input[type=text],input[type=password],input[type=email] {
     margin: 3%;
     padding: 5%;   
     width: 84%;
@@ -29,7 +29,7 @@
     border-radius: 5px;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
-.login-btn {
+.btn-primary {
     width: 40%;
     background-color: #2ecc71;
     color: white;
@@ -39,11 +39,6 @@
     margin: 5% 30%;
 }
 
-a.register-link {
-    padding: 1%;
-    margin: 3%;
-}
-
-a:hover {
-    color: darkred;
+.invalid {
+    border: 1px solid red;
 }

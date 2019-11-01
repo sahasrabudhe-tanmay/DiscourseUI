@@ -1,0 +1,40 @@
+<div class="register-box">
+    <form [formGroup]="registerForm">
+        <h1 class="register-header">
+            Register
+        </h1>
+
+        <div class="textbox">
+            <input type="text" class="name" name="name" id="name" placeholder="Name" formControlName="name">
+        </div>
+
+        <div class="textbox">
+            <input type="text" class="username" name="username" id="username" placeholder="Username"
+                formControlName="username"
+                (blur)="registerForm.get('username').value!==(null||'')?checkUsernameAvailability():null"
+                [ngClass]="{'invalid':!isUsernameAvailable&&registerForm.get('username').dirty&&registerForm.get('username').value!==null}">
+        </div>
+
+        <div class="textbox">
+            <input type="password" class="password" name="password" id="password" placeholder="Password"
+                formControlName="password"
+                [ngClass]="{'invalid':!passwordsMatch&&registerForm.get('password').dirty&&!registerForm.get('password').valid}"
+                (blur)="comparePasswords()">
+        </div>
+
+        <div class="textbox">
+            <input type="password" class="password" name="retypePassword" id="retypePassword"
+                placeholder="Retype Password" formControlName="retypePassword"
+                [ngClass]="{'invalid':!passwordsMatch&&registerForm.get('retypePassword').dirty}"
+                (blur)="comparePasswords()">
+        </div>
+
+        <div class="textbox">
+            <input type="email" class="email" name="email" id="email" placeholder="Email ID" formControlName="email">
+        </div>
+
+        <button type="submit" class="btn-primary" (click)="registerUser()">Register</button>
+    </form>
+
+
+</div>

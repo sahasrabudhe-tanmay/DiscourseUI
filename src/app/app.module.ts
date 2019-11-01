@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,17 +9,20 @@ import { DcLoginComponent } from './components/dc-login/dc-login.component';
 import { EncryptionService } from './services/util/encryption.service';
 import { DiscourseDataService } from './services/data/discourse-data.service';
 import { DiscourseRestService } from './services/rest/discourse-rest.service';
+import { DcRegisterComponent } from './components/dc-register/dc-register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DcLoginComponent
+    DcLoginComponent,
+    DcRegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     EncryptionService,
