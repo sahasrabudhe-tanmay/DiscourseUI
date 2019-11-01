@@ -21,8 +21,8 @@ export class DcRegisterComponent implements OnInit {
   createRegisterForm() {
     this.registerForm = new FormGroup({
       username: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.minLength(8), Validators.required]),
-      retypePassword: new FormControl(null, [Validators.minLength(8), Validators.required]),
+      password: new FormControl(null, [Validators.required, Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,30})')]),
+      retypePassword: new FormControl(null, [Validators.required]),
       name: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email])
     });
