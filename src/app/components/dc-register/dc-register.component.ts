@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { DiscourseDataService } from 'src/app/services/data/discourse-data.service';
+import { EncryptionService } from 'src/app/services/util/encryption.service';
 
 @Component({
   selector: 'app-dc-register',
@@ -12,7 +14,10 @@ export class DcRegisterComponent implements OnInit {
   registerForm: FormGroup;
   passwordsMatch: boolean = null;
 
-  constructor() { }
+  constructor(
+    private dataService: DiscourseDataService,
+    private encryptionService: EncryptionService
+  ) { }
 
   ngOnInit() {
     this.createRegisterForm();
@@ -30,6 +35,18 @@ export class DcRegisterComponent implements OnInit {
 
   registerUser() {
     console.log(this.registerForm);
+    let password = this.registerForm.get('password').value;
+    password = this.encryptionService.encrypt('123456$#@$^@1ERF', password);
+    let newUser = new User(
+      this.registerForm.get('name').value,
+      this.registerForm.get('username').value,
+      password,
+      this.registerForm.get('email').value
+    );
+
+    this.dataService.user = newUser;
+
+    console.log(this.dataService.user);
   }
 
   comparePasswords() {
