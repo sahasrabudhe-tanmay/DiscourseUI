@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DiscourseDataService } from 'src/app/services/data/discourse-data.service';
 import { EncryptionService } from 'src/app/services/util/encryption.service';
+import { DiscourseRestService } from 'src/app/services/rest/discourse-rest.service';
 
 @Component({
   selector: 'app-dc-register',
@@ -16,7 +17,8 @@ export class DcRegisterComponent implements OnInit {
 
   constructor(
     private dataService: DiscourseDataService,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
+    private restService: DiscourseRestService
   ) { }
 
   ngOnInit() {
@@ -34,7 +36,6 @@ export class DcRegisterComponent implements OnInit {
   }
 
   registerUser() {
-    console.log(this.registerForm);
     let password = this.registerForm.get('password').value;
     password = this.encryptionService.encrypt('123456$#@$^@1ERF', password);
     let newUser = new User(
@@ -44,9 +45,14 @@ export class DcRegisterComponent implements OnInit {
       this.registerForm.get('email').value
     );
 
-    this.dataService.user = newUser;
+    this.restService.registerUser(newUser).subscribe(userResponse => {
+      if (userResponse.responseStatus.status === 'SUCCESS') {
+        this.dataService.user = userResponse.user;
+      } else {
+        throw new Error('Soemthing went wrong while registering');
+      }
+    });
 
-    console.log(this.dataService.user);
   }
 
   comparePasswords() {

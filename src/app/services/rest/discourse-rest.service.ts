@@ -21,6 +21,11 @@ export class DiscourseRestService {
   ) { }
 
   public loginUser(user: User) {
-    return this.httpService.post<UserResponse>(this.dataService.DISCOURSE_RS_URL + 'login', user, this.defaultHeaders);
+    return this.httpService.post<UserResponse>(this.dataService.DISCOURSE_RS_URL + 'user/login', user, this.defaultHeaders);
   }
+
+  public registerUser(user: User) {
+    return this.httpService.post<UserResponse>(this.dataService.DISCOURSE_RS_URL + 'user/register', user, this.defaultHeaders);
+  }
+  
 }
