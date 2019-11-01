@@ -10,17 +10,22 @@
 
         <div class="textbox">
             <input type="text" class="username" name="username" id="username" placeholder="Username"
-                formControlName="username">
+                formControlName="username"
+                (blur)="registerForm.get('username').value!==(null||'')?checkUsernameAvailability():null"
+                [ngClass]="{'invalid':!isUsernameAvailable&&registerForm.get('username').dirty&&registerForm.get('username').value!==null}">
         </div>
 
         <div class="textbox">
             <input type="password" class="password" name="password" id="password" placeholder="Password"
-                formControlName="password" [ngClass]="{'invalid':!passwordsMatch&&registerForm.get('password').dirty&&!registerForm.get('password').valid}" (blur)="comparePasswords()">
+                formControlName="password"
+                [ngClass]="{'invalid':!passwordsMatch&&registerForm.get('password').dirty&&!registerForm.get('password').valid}"
+                (blur)="comparePasswords()">
         </div>
 
         <div class="textbox">
             <input type="password" class="password" name="retypePassword" id="retypePassword"
-                placeholder="Retype Password" formControlName="retypePassword" [ngClass]="{'invalid':!passwordsMatch&&registerForm.get('retypePassword').dirty}"
+                placeholder="Retype Password" formControlName="retypePassword"
+                [ngClass]="{'invalid':!passwordsMatch&&registerForm.get('retypePassword').dirty}"
                 (blur)="comparePasswords()">
         </div>
 

@@ -15,6 +15,7 @@ export class DcRegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   passwordsMatch: boolean = null;
+  isUsernameAvailable: boolean = null;
 
   constructor(
     private dataService: DiscourseDataService,
@@ -69,6 +70,18 @@ export class DcRegisterComponent implements OnInit {
         this.passwordsMatch = true;
       }
     }
+  }
+
+  checkUsernameAvailability() {
+    const username = this.registerForm.get('username').value;
+
+    this.restService.checkUsernameAvailability(username).subscribe(responseStatus => {
+      if (responseStatus.status === 'SUCCESS') {
+        this.isUsernameAvailable = true;
+      } else {
+        this.isUsernameAvailable = false;
+      }
+    });
   }
 
 }
