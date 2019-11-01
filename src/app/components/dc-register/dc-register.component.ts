@@ -34,7 +34,8 @@ export class DcRegisterComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,30})')]),
       retypePassword: new FormControl(null, [Validators.required]),
       name: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required, Validators.email])
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      image: new FormControl()
     });
   }
 
@@ -82,6 +83,20 @@ export class DcRegisterComponent implements OnInit {
         this.isUsernameAvailable = false;
       }
     });
+  }
+
+  fileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.registerForm.get('image').setValue(file);
+    }
+  }
+
+  uploadImage() {
+    const formData = new FormData();
+    formData.append('image', this.registerForm.get('image').value);
+
+    console.log(formData.get('image').valueOf());
   }
 
 }
