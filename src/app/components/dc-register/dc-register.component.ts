@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { DiscourseDataService } from 'src/app/services/data/discourse-data.service';
 import { EncryptionService } from 'src/app/services/util/encryption.service';
 import { DiscourseRestService } from 'src/app/services/rest/discourse-rest.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dc-register',
@@ -18,7 +19,8 @@ export class DcRegisterComponent implements OnInit {
   constructor(
     private dataService: DiscourseDataService,
     private encryptionService: EncryptionService,
-    private restService: DiscourseRestService
+    private restService: DiscourseRestService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -48,6 +50,7 @@ export class DcRegisterComponent implements OnInit {
     this.restService.registerUser(newUser).subscribe(userResponse => {
       if (userResponse.responseStatus.status === 'SUCCESS') {
         this.dataService.user = userResponse.user;
+        this.router.navigate(['']);
       } else {
         throw new Error('Soemthing went wrong while registering');
       }
