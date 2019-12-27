@@ -32,5 +32,9 @@ export class DiscourseRestService {
   public checkUsernameAvailability(username: string) {
     return this.httpService.get<ResponseStatus>(this.dataService.DISCOURSE_RS_URL + '/user/check-availability/' + username, this.defaultHeaders);
   }
+
+  public uploadImage(data) {
+    return this.httpService.post<ResponseStatus>(this.dataService.DISCOURSE_RS_URL + 'image/upload', data);
+  }
   
 }

@@ -96,7 +96,9 @@ export class DcRegisterComponent implements OnInit {
     const formData = new FormData();
     formData.append('image', this.registerForm.get('image').value);
 
-    console.log(formData.get('image').valueOf());
+    this.restService.uploadImage(formData).subscribe(responseStatus => {
+      console.log(responseStatus);
+    });
   }
 
 }
