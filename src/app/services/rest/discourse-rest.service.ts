@@ -34,7 +34,7 @@ export class DiscourseRestService {
   }
 
   public uploadImage(data) {
-    return this.httpService.post<ResponseStatus>(this.dataService.DISCOURSE_RS_URL + 'image/upload', data);
+    return this.httpService.post(this.dataService.DISCOURSE_RS_URL + 'image/upload', data, {responseType: 'text'});
   }
   
 }
