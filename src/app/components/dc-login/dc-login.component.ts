@@ -29,6 +29,7 @@ export class DcLoginComponent implements OnInit {
       console.log(userResponse);
       if (userResponse.responseStatus.status === 'SUCCESS') {
         this.dataService.user = userResponse.user;
+        this.dataService.isLoggedIn = true;
         console.log(this.dataService.user);
         this.router.navigate(['']);
       } else {

@@ -1,0 +1,12 @@
+<div class="navbar-wrapper">
+    <a routerLink="">Discourse</a>
+    <div class="navbar-right">
+        <div *ngIf="!loggedIn; else logOut">
+            <button routerLink="/login" class="btn login-btn">Log In</button>
+            <button routerLink="/register" class="btn register-btn">Sign Up</button>
+        </div>
+        <ng-template #logOut>
+            <button class="btn login-btn" (click)="logout()">Log Out</button>
+        </ng-template>
+    </div>
+</div>
