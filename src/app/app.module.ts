@@ -10,12 +10,16 @@ import { EncryptionService } from './services/util/encryption.service';
 import { DiscourseDataService } from './services/data/discourse-data.service';
 import { DiscourseRestService } from './services/rest/discourse-rest.service';
 import { DcRegisterComponent } from './components/dc-register/dc-register.component';
+import { DcNavbarComponent } from './components/dc-navbar/dc-navbar.component';
+import { DcHomeComponent } from './components/dc-home/dc-home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DcLoginComponent,
-    DcRegisterComponent
+    DcRegisterComponent,
+    DcNavbarComponent,
+    DcHomeComponent
   ],
   imports: [
     BrowserModule,
