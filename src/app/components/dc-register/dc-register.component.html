@@ -33,7 +33,11 @@
             <input type="email" class="email" name="email" id="email" placeholder="Email ID" formControlName="email">
         </div>
 
-        <button type="submit" class="btn-primary" (click)="registerUser()">Register</button>
+        <div class="img-upload">
+            <input type="file" name="image" id="image" (change)="fileSelect($event)">
+        </div>
+
+        <button type="submit" class="btn-primary" (click)="register()">Register</button>
     </form>
 
 

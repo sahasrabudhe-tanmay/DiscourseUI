@@ -34,18 +34,20 @@ export class DcRegisterComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.pattern('((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,30})')]),
       retypePassword: new FormControl(null, [Validators.required]),
       name: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required, Validators.email])
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      image: new FormControl()
     });
   }
 
-  registerUser() {
+  registerUser(imageId: string) {
     let password = this.registerForm.get('password').value;
     password = this.encryptionService.encrypt('123456$#@$^@1ERF', password);
     let newUser = new User(
       this.registerForm.get('name').value,
       this.registerForm.get('username').value,
       password,
-      this.registerForm.get('email').value
+      this.registerForm.get('email').value,
+      imageId
     );
 
     this.restService.registerUser(newUser).subscribe(userResponse => {
@@ -81,6 +83,24 @@ export class DcRegisterComponent implements OnInit {
       } else {
         this.isUsernameAvailable = false;
       }
+    });
+  }
+
+  fileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.registerForm.get('image').setValue(file);
+    }
+  }
+
+  register() {
+    const formData = new FormData();
+    formData.append('image', this.registerForm.get('image').value);
+    formData.append('title', this.registerForm.get('username').value + new Date().getTime().toString());
+
+    this.restService.uploadImage(formData).subscribe(response => {
+      console.log(response);
+      this.registerUser(response);
     });
   }
 
