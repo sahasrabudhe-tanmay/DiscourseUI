@@ -9,16 +9,9 @@ import { User } from 'src/app/models/user';
 })
 export class DcHomeComponent implements OnInit {
 
-  constructor(
-    public dataService: DiscourseDataService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  logoutUser() {
-    this.dataService.isLoggedIn = false;
-    this.dataService.user = new User();
   }
 
 }

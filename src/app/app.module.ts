@@ -12,6 +12,8 @@ import { DiscourseRestService } from './services/rest/discourse-rest.service';
 import { DcRegisterComponent } from './components/dc-register/dc-register.component';
 import { DcNavbarComponent } from './components/dc-navbar/dc-navbar.component';
 import { DcHomeComponent } from './components/dc-home/dc-home.component';
+import { DcPostComponent } from './components/dc-post/dc-post.component';
+import { DcRouterWrapperComponent } from './components/dc-router-wrapper/dc-router-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { DcHomeComponent } from './components/dc-home/dc-home.component';
     DcLoginComponent,
     DcRegisterComponent,
     DcNavbarComponent,
-    DcHomeComponent
+    DcHomeComponent,
+    DcPostComponent,
+    DcRouterWrapperComponent
   ],
   imports: [
     BrowserModule,

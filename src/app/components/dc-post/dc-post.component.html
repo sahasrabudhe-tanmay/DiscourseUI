@@ -1,0 +1,13 @@
+<div class="post-wrapper">
+    <h2 class="post-title">{{title}}</h2>
+    <h5 class="post-content">{{content}}</h5>
+    <div class="action-bar">
+        <span class="icon-wrapper" *ngIf="!postLiked" (click)="onLike()"><i class="far fa-thumbs-up fa-lg"></i></span>
+        <span class="icon-wrapper" *ngIf="postLiked" (click)="onClear()"><i class="fas fa-thumbs-up fa-lg"></i></span>
+        <span class="like-counter">{{likeCounter}}</span>
+        <span class="icon-wrapper" *ngIf="!postDisliked" (click)="onDislike()"><i class="far fa-thumbs-down fa-lg"></i></span>
+        <span class="icon-wrapper" *ngIf="postDisliked" (click)="onClear()"><i class="fas fa-thumbs-down fa-lg"></i></span>
+        <h6 class="post-creator">Posted by: {{creator}}</h6>
+    </div>
+
+</div>
