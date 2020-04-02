@@ -16,6 +16,7 @@ import { DcPostComponent } from './components/dc-post/dc-post.component';
 import { DcRouterWrapperComponent } from './components/dc-router-wrapper/dc-router-wrapper.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { AuthenticationInterceptor } from './interceptors/authentication-interceptor.interceptor';
+import { CookieService } from '../../node_modules/ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AuthenticationInterceptor } from './interceptors/authentication-interce
     DiscourseDataService,
     DiscourseRestService,
     AuthenticationGuard,
+    CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthenticationInterceptor,

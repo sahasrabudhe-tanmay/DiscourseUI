@@ -5,6 +5,7 @@ import { DiscourseDataService } from 'src/app/services/data/discourse-data.servi
 import { EncryptionService } from 'src/app/services/util/encryption.service';
 import { DiscourseRestService } from 'src/app/services/rest/discourse-rest.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dc-register',
@@ -21,7 +22,8 @@ export class DcRegisterComponent implements OnInit {
     private dataService: DiscourseDataService,
     private encryptionService: EncryptionService,
     private restService: DiscourseRestService,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
@@ -54,7 +56,7 @@ export class DcRegisterComponent implements OnInit {
       if (userResponse.responseStatus.status === 'SUCCESS') {
         this.dataService.user = userResponse.user;
         this.dataService.isLoggedIn = true;
-        this.dataService.token = userResponse.token;
+        this.cookieService.set('token', userResponse.token, 2);
         this.router.navigate(['']);
       } else {
         throw new Error('Something went wrong while registering');
