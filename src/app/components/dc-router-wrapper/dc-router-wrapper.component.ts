@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { DiscourseDataService } from 'src/app/services/data/discourse-data.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dc-router-wrapper',
@@ -10,7 +11,8 @@ import { DiscourseDataService } from 'src/app/services/data/discourse-data.servi
 export class DcRouterWrapperComponent implements OnInit {
 
   constructor(
-    public dataService: DiscourseDataService
+    public dataService: DiscourseDataService,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
@@ -18,7 +20,8 @@ export class DcRouterWrapperComponent implements OnInit {
 
   logoutUser() {
     this.dataService.isLoggedIn = false;
-    this.dataService.user = new User();
+    this.dataService.user = null;
+    this.cookieService.delete('token');
   }
 
 }
