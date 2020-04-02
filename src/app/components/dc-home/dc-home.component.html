@@ -1,3 +1,3 @@
 <div class="main-wrapper">
-    <app-dc-post id="1" creator="tanmay" title="Title" content="Test content" likes="0" dislikes="0"></app-dc-post>
+    <app-dc-post *ngFor="let post of dataService.posts" [id]="post.id" [title]="post.title" [content]="post.description" [creator]="post.postedBy" [likes]="post.likes" [dislikes]="post.dislikes"></app-dc-post>
 </div>

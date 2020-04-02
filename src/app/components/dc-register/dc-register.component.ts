@@ -54,9 +54,10 @@ export class DcRegisterComponent implements OnInit {
       if (userResponse.responseStatus.status === 'SUCCESS') {
         this.dataService.user = userResponse.user;
         this.dataService.isLoggedIn = true;
+        this.dataService.token = userResponse.token;
         this.router.navigate(['']);
       } else {
-        throw new Error('Soemthing went wrong while registering');
+        throw new Error('Something went wrong while registering');
       }
     });
 

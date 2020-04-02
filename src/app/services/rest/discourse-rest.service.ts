@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DiscourseDataService } from '../data/discourse-data.service';
 import { UserResponse } from 'src/app/models/user-response';
 import { ResponseStatus } from 'src/app/models/response-status';
+import { PostResponse } from 'src/app/models/post-response';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,10 @@ export class DiscourseRestService {
 
   public uploadImage(data) {
     return this.httpService.post(this.dataService.DISCOURSE_RS_URL + 'image/upload', data, {responseType: 'text'});
+  }
+
+  public getAllPosts() {
+    return this.httpService.get<PostResponse>(this.dataService.DISCOURSE_RS_URL + '/post/all');
   }
   
 }

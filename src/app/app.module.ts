@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,8 @@ import { DcNavbarComponent } from './components/dc-navbar/dc-navbar.component';
 import { DcHomeComponent } from './components/dc-home/dc-home.component';
 import { DcPostComponent } from './components/dc-post/dc-post.component';
 import { DcRouterWrapperComponent } from './components/dc-router-wrapper/dc-router-wrapper.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { AuthenticationInterceptor } from './interceptors/authentication-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,13 @@ import { DcRouterWrapperComponent } from './components/dc-router-wrapper/dc-rout
   providers: [
     EncryptionService,
     DiscourseDataService,
-    DiscourseRestService
+    DiscourseRestService,
+    AuthenticationGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
