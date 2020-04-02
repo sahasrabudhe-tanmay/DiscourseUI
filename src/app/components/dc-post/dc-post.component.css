@@ -1,0 +1,42 @@
+.post-wrapper {
+    background-color: rgb(240, 240, 240);
+    margin: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+.post-wrapper > * {
+    background-color: inherit;
+}
+
+.action-bar {
+    display: inline-block;
+    width: 100%;
+}
+
+.icon-wrapper > * {
+    background-color: inherit;
+    margin: 0px 10px;
+}
+
+.action-bar > * {
+    display: inherit;
+    background-color: inherit;
+}
+
+.post-creator {
+    float: right;
+}
+
+.post-title, .post-content {
+    padding: 8px;
+    margin: 5px;
+}
+
+.color-blue {
+    color: cornflowerblue;
+}
+
+.color-red {
+    color: crimson;
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DiscourseRestService } from 'src/app/services/rest/discourse-rest.service';
 import { DiscourseDataService } from 'src/app/services/data/discourse-data.service';
-import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-dc-home',
@@ -10,15 +10,22 @@ import { User } from 'src/app/models/user';
 export class DcHomeComponent implements OnInit {
 
   constructor(
+    private restService: DiscourseRestService,
     public dataService: DiscourseDataService
   ) { }
 
   ngOnInit() {
+    this.getAllPosts();
   }
 
-  logoutUser() {
-    this.dataService.isLoggedIn = false;
-    this.dataService.user = new User();
+  getAllPosts() {
+    this.restService.getAllPosts().subscribe(postResponse => {
+      if(postResponse.responseStatus.status === 'FAILURE') {
+        throw new Error();
+      } else {
+        this.dataService.posts = postResponse.posts;
+      }
+    });
   }
 
 }

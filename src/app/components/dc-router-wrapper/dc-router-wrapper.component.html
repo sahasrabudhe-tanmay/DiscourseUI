@@ -1,0 +1,4 @@
+<div class="navbar-parent">
+    <app-dc-navbar [loggedIn]="dataService.isLoggedIn" (logoutEvent)="logoutUser()"></app-dc-navbar>
+</div>
+<router-outlet></router-outlet>
