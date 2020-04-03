@@ -11,14 +11,13 @@ export class AuthenticationGuard implements CanActivate {
 
   constructor(
     private router: Router,
-    private dataService: DiscourseDataService,
     private cookieService: CookieService
   ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-      if(this.dataService.isLoggedIn && this.cookieService.get('token')) {
+      if(this.cookieService.get('token')) {
         return true;
       } else {
         this.router.navigate(['/login'], {queryParams: {callbackURL: state.url}});

@@ -15,6 +15,7 @@ export class DcPostComponent implements OnInit {
   @Input() dislikes: number;
   @Output() liked: EventEmitter<string> = new EventEmitter<string>();
   @Output() disliked: EventEmitter<string> = new EventEmitter<string>();
+  @Output() cleared: EventEmitter<string> = new EventEmitter<string>();
 
   postLiked: boolean = false;
   postDisliked: boolean = false;
@@ -50,6 +51,7 @@ export class DcPostComponent implements OnInit {
       this.dislikes--;
     }
     this.updateLikeCounter();
+    this.cleared.emit(this.id);
   }
 
   updateLikeCounter() {

@@ -31,7 +31,11 @@ export class DiscourseRestService {
   }
 
   public checkUsernameAvailability(username: string) {
-    return this.httpService.get<ResponseStatus>(this.dataService.DISCOURSE_RS_URL + '/user/check-availability/' + username, this.defaultHeaders);
+    return this.httpService.get<ResponseStatus>(this.dataService.DISCOURSE_RS_URL + 'user/check-availability/' + username, this.defaultHeaders);
+  }
+
+  public verifyUser() {
+    return this.httpService.get<ResponseStatus>(this.dataService.DISCOURSE_RS_URL + 'user/verify', this.defaultHeaders);
   }
 
   public uploadImage(data) {
@@ -39,7 +43,19 @@ export class DiscourseRestService {
   }
 
   public getAllPosts() {
-    return this.httpService.get<PostResponse>(this.dataService.DISCOURSE_RS_URL + '/post/all');
+    return this.httpService.get<PostResponse>(this.dataService.DISCOURSE_RS_URL + 'post/all');
+  }
+
+  public likePost(id: string) {
+    return this.httpService.get<PostResponse>(this.dataService.DISCOURSE_RS_URL + `post/like/id/${id}/user/${this.dataService.user.username}`);
+  }
+
+  public dislikePost(id: string) {
+    return this.httpService.get<PostResponse>(this.dataService.DISCOURSE_RS_URL + `post/dislike/id/${id}/user/${this.dataService.user.username}`);
+  }
+
+  public clearLikesForPost(id: string) {
+    return this.httpService.get<PostResponse>(this.dataService.DISCOURSE_RS_URL + `post/clearLikes/id/${id}/user/${this.dataService.user.username}`);
   }
   
 }

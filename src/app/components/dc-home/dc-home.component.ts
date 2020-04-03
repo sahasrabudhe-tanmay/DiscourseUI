@@ -18,6 +18,30 @@ export class DcHomeComponent implements OnInit {
     this.getAllPosts();
   }
 
+  likePost(id) {
+    this.restService.likePost(id).subscribe(postResponse => {
+      if (postResponse.responseStatus.status === 'FAILURE') {
+        console.log('Service unavailable');
+      }
+    });
+  }
+
+  dislikePost(id) {
+    this.restService.dislikePost(id).subscribe(postResponse => {
+      if (postResponse.responseStatus.status === 'FAILURE') {
+        console.log('Service unavailable');
+      }
+    });
+  }
+
+  clearLikesForPost(id) {
+    this.restService.clearLikesForPost(id).subscribe(postResponse => {
+      if (postResponse.responseStatus.status === 'FAILURE') {
+        console.log('Service unavailable');
+      }
+    });
+  }
+
   getAllPosts() {
     this.restService.getAllPosts().subscribe(postResponse => {
       if(postResponse.responseStatus.status === 'FAILURE') {

@@ -1,3 +1,4 @@
 <div class="main-wrapper">
-    <app-dc-post *ngFor="let post of dataService.posts" [id]="post.id" [title]="post.title" [content]="post.description" [creator]="post.postedBy" [likes]="post.likes" [dislikes]="post.dislikes"></app-dc-post>
+    <app-dc-post *ngFor="let post of dataService.posts" [id]="post.id" [title]="post.title" [content]="post.description"
+        [creator]="post.postedBy" [likes]="post.likes" [dislikes]="post.dislikes" (liked)="likePost($event)" (disliked)="dislikePost($event)" (cleared)="clearLikesForPost($event)"></app-dc-post>
 </div>
