@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ZipkinModule } from '@angular-tracing/zipkin';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +34,22 @@ import { CookieService } from '../../node_modules/ngx-cookie-service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ZipkinModule.forRootWithConfig({
+      traceProvider: {
+        http: {
+          remoteServiceMapping: {
+            DiscourseRS: new RegExp('.*/discourse-rs/*')
+          }
+        },
+        logToConsole: true,
+        zipkinBaseUrl: 'https://localhost:9411',
+        defaultTags: {
+          name: 'DiscourseUI'
+        }
+      },
+      localServiceName: 'DiscourseUI'
+    })
   ],
   providers: [
     EncryptionService,
