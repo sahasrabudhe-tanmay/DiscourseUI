@@ -1,4 +1,9 @@
 <div class="main-wrapper">
+    <button (click)="openPostModal()" class="add-btn">Post Something!</button>
     <app-dc-post *ngFor="let post of dataService.posts" [id]="post.id" [title]="post.title" [content]="post.description"
         [creator]="post.postedBy" [likes]="post.likes" [dislikes]="post.dislikes" (liked)="likePost($event)" (disliked)="dislikePost($event)" (cleared)="clearLikesForPost($event)"></app-dc-post>
 </div>
+
+<ng-container *ngIf="modalOpen">
+    <app-add-post (addPost)="addPost($event)" (close)="closePostModal()"></app-add-post>
+</ng-container>

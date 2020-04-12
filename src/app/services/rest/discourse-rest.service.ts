@@ -5,6 +5,7 @@ import { DiscourseDataService } from '../data/discourse-data.service';
 import { UserResponse } from 'src/app/models/user-response';
 import { ResponseStatus } from 'src/app/models/response-status';
 import { PostResponse } from 'src/app/models/post-response';
+import { Post } from 'src/app/models/post';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,10 @@ export class DiscourseRestService {
 
   public clearLikesForPost(id: string) {
     return this.httpService.get<PostResponse>(this.dataService.DISCOURSE_RS_URL + `post/clearLikes/id/${id}/user/${this.dataService.user.username}`);
+  }
+
+  public addPost(post: Post) {
+    return this.httpService.post<PostResponse>(this.dataService.DISCOURSE_RS_URL + 'post/add', post, this.defaultHeaders);
   }
   
 }
