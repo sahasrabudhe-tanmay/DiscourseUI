@@ -1,0 +1,42 @@
+.textbox {
+    width: 100%;
+}
+
+.textbox textarea input[type=text] {
+    margin: 3%;
+    padding: 5%;   
+    width: 84%;
+    background-color: #e6e9e9;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.add-btn {
+    width: 40%;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 3%;
+    margin: 5% 30%;
+}
+
+.modal-wrapper {
+    z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.modal-background {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.80;
+}

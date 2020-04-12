@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscourseRestService } from 'src/app/services/rest/discourse-rest.service';
 import { DiscourseDataService } from 'src/app/services/data/discourse-data.service';
+import { Post } from 'src/app/models/post';
 
 @Component({
   selector: 'app-dc-home',
@@ -8,6 +9,8 @@ import { DiscourseDataService } from 'src/app/services/data/discourse-data.servi
   styleUrls: ['./dc-home.component.css']
 })
 export class DcHomeComponent implements OnInit {
+
+  modalOpen = false;
 
   constructor(
     private restService: DiscourseRestService,
@@ -48,6 +51,24 @@ export class DcHomeComponent implements OnInit {
         throw new Error();
       } else {
         this.dataService.posts = postResponse.posts;
+      }
+    });
+  }
+
+  openPostModal() {
+    this.modalOpen = true;
+    console.log('Post modal opened!');
+  }
+
+  closePostModal() {
+    this.modalOpen = false;
+  }
+
+  addPost(post: Post) {
+    post.postedBy = this.dataService.user.username;
+    this.restService.addPost(post).subscribe(postResponse => {
+      if (postResponse.responseStatus.status === 'FAILURE') {
+        console.log('Post could not be added!');
       }
     });
   }

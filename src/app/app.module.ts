@@ -18,6 +18,7 @@ import { DcRouterWrapperComponent } from './components/dc-router-wrapper/dc-rout
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { AuthenticationInterceptor } from './interceptors/authentication-interceptor.interceptor';
 import { CookieService } from '../../node_modules/ngx-cookie-service';
+import { AddPostComponent } from './components/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CookieService } from '../../node_modules/ngx-cookie-service';
     DcNavbarComponent,
     DcHomeComponent,
     DcPostComponent,
-    DcRouterWrapperComponent
+    DcRouterWrapperComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
